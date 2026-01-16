@@ -68,7 +68,7 @@ function setGroundsDistance(distGridSpaces) {
   groundLower.style.transform = `translateY(${pixelsToDvh(groundTranslateAmount)}dvh)`; // set the ground positions based on the area provided in the function parameters
   groundUpper.style.transform = `translateY(-${pixelsToDvh(groundTranslateAmount)}dvh) scaleY(-1)`; // set the ground positions based on the area provided in the function parameters
   groundLowerLine.style.transform = `translateY(calc(${pixelsToDvh(groundTranslateAmount)}dvh + 0.3dvh)`; // update line position
-  groundUpperLine.style.transform = `translateY(calc(${pixelsToDvh(groundTranslateAmount) / 2}dvh - 0.6dvh)`; // update line position
+  groundUpperLine.style.transform = `translateY(calc(${40 - pixelsToDvh(groundTranslateAmount)}dvh + 0.3dvh)`; // update line position
   //groundY = `${pixelsToDvh((window.innerHeight - gridSpacesToPixels(distGridSpaces)) / 2)}dvh`;
 }
 
@@ -88,6 +88,5 @@ function updateGroundY() {
   requestAnimationFrame(updateGroundY);
 }
 requestAnimationFrame(updateGroundY);
-//setGroundsDistance(8);
 
 resetGrounds();
