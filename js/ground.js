@@ -6,7 +6,7 @@ const groundUpperLine = document.getElementById("groundUpperLine");
 
 const groundLowerShadowLeft = document.getElementById('groundLowerShadowLeft');
 const groundLowerShadowRight = document.getElementById('groundLowerShadowRight');
-const groundUpperShadowLeft = document.getElementById('groundUpperrShadowLeft');
+const groundUpperShadowLeft = document.getElementById('groundUpperShadowLeft');
 const groundUpperShadowRight = document.getElementById('groundUpperShadowRight');
  
 let groundTexture = "04"; // 01 - 07
@@ -53,10 +53,10 @@ function moveGround(timestamp) {
 requestAnimationFrame(moveGround);
 
 function setGroundsDistance(distGridSpaces) {
-  groundLower.style.display = 'block';
-  groundLowerLine.style.display = 'block';
-  groundLowerShadowLeft.display = 'block';
-  groundLowerShadowRight.display = 'block';
+  groundUpper.style.display = 'block';
+  groundUpperLine.style.display = 'block';
+  groundUpperShadowLeft.display = 'block';
+  groundUpperShadowRight.display = 'block';
   // ground transition easing
   groundLower.style.transition = 'transform 500ms ease-in-out';
   groundUpper.style.transition = 'transform 500ms ease-in-out';
@@ -73,7 +73,10 @@ function setGroundsDistance(distGridSpaces) {
 }
 
 function resetGrounds() {
-  
+  groundUpper.style.display = 'none';
+  //groundUpperLine.style.display = 'none';
+  groundUpperShadowLeft.display = 'none';
+  groundUpperShadowRight.display = 'none';
 }
 
 function updateGroundY() {
@@ -86,3 +89,5 @@ function updateGroundY() {
 }
 requestAnimationFrame(updateGroundY);
 //setGroundsDistance(8);
+
+resetGrounds();

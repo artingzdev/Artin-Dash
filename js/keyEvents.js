@@ -1,5 +1,6 @@
 const keysPressed = {};
 let leftMouseDown = false;
+let isGroundDouble = false;
 
 // ── Keyboard controls ───────────────────────────────────────
 document.addEventListener('keydown', (event) => {
@@ -22,7 +23,7 @@ window.addEventListener("blur", () => {
     leftMouseDown = false;
 });
 
-// ── Mouse controls (mainly for desktop) ─────────────────────
+// ── Mouse controls) ─────────────────────
 document.addEventListener('mousedown', (e) => {
     if (e.button === 0) leftMouseDown = true;
 });
@@ -34,7 +35,6 @@ document.addEventListener('mouseup', (e) => {
 // ── Mobile touch support ────────────────────────────────────
 document.addEventListener('touchstart', (e) => {
     // Prevent scrolling/zooming on some mobile browsers
-    // e.preventDefault();   ← uncomment only if needed (can break scrolling elsewhere)
     
     isJumping = true;
     jump();
@@ -44,7 +44,7 @@ document.addEventListener('touchend', () => {
     isJumping = false;
 });
 
-// ── Main input check (still useful for holding jump on desktop) ──
+// ── Main input check ──
 let lastInputCheck = performance.now();
 
 function checkInput(currentTime) {
@@ -69,7 +69,7 @@ function checkInput(currentTime) {
     }
 
     if (keysPressed['Enter']) {
-        setGroundsDistance(8);
+        setGroundsDistance(10);
     }
 
     // console.log(groundY); // ← uncomment for debugging
