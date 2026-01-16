@@ -54,17 +54,23 @@ function setGroundsDistance(distGridSpaces) {
   groundUpperShadowLeft.display = 'block';
   groundUpperShadowRight.display = 'block';
   // ground transition easing
-  groundLower.style.transition = 'transform 500ms ease-in-out';
-  groundUpper.style.transition = 'transform 500ms ease-in-out';
-  groundLowerLine.style.transition = 'transform 500ms ease-in-out';
-  groundUpperLine.style.transition = 'transform 500ms ease-in-out';
+  groundLower.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
+  groundUpper.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
+  groundLowerLine.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
+  groundUpperLine.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
   //player.style.transition = 'bottom 500ms ease-in-out';
+
+  updateGroundY();
+  setPlayerPosition();
 
   let groundTranslateAmount = (0.40 * window.innerHeight) - ((window.innerHeight - gridSpacesToPixels(distGridSpaces)) / 2)
   groundLower.style.transform = `translateY(${pixelsToDvh(groundTranslateAmount)}dvh)`; // set the ground positions based on the area provided in the function parameters
   groundUpper.style.transform = `translateY(-${pixelsToDvh(groundTranslateAmount)}dvh) scaleY(-1)`; // set the ground positions based on the area provided in the function parameters
   groundLowerLine.style.transform = `translateY(calc(${pixelsToDvh(groundTranslateAmount)}dvh + 0.3dvh)`; // update line position
   groundUpperLine.style.transform = `translateY(calc(${40 - pixelsToDvh(groundTranslateAmount)}dvh + 0.3dvh)`; // update line position
+
+  updateGroundY();
+  setPlayerPosition();
   //groundY = `${pixelsToDvh((window.innerHeight - gridSpacesToPixels(distGridSpaces)) / 2)}dvh`;
 }
 
@@ -81,6 +87,7 @@ function updateGroundY() {
   const matrixArrayStrings = matrixValuesString.split(/,\s*|\s+/); // Splits by commas and/or spaces
   const matrixArray = matrixArrayStrings.map(Number);
   groundY = `${40 - (pixelsToDvh(matrixArray[5]))}dvh`;
+  setPlayerPosition();
   requestAnimationFrame(updateGroundY);
 }
 requestAnimationFrame(updateGroundY);
