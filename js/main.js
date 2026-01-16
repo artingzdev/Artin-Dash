@@ -10,10 +10,23 @@ function pixelsToDvh(px) {
   return ((px / window.innerHeight) * 100);
 }
 
-// Utilities
 let timeWarp = 1;
+let isSlowModeEnabled = false;
+
+// Utilities
 let drawDebugTrail = false;
 
+
+function updateTimeWarpAmount() {
+    if (isSlowModeEnabled) {
+        timeWarp = 0.1;
+    }
+    else{
+        timeWarp = 1;
+    }
+    requestAnimationFrame(updateTimeWarpAmount);
+}
+requestAnimationFrame(updateTimeWarpAmount);
 
 const speed = [
     {// half speed ↓
@@ -49,3 +62,11 @@ let gameSpeed = 1
 let playerGravity = 1 // 1 = normal -1 = upside-down
 
 const gameBgSpeed = 0.1;
+
+let groundTexture = "05"; // 01 - 07
+let groundColor = '#35008A';
+let lineColor = '#FFFFFF';
+let lineBlendingEnabled = 'true';
+
+let gameBgTexture = "05"; // 01 - 59
+let gameBgColor = '#4700D2';

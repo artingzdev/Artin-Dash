@@ -2,12 +2,16 @@
 const debugCanvas = document.getElementById('debug-trail');
 const debugCtx = debugCanvas.getContext('2d');
 
-if (drawDebugTrail) {
-    debugCanvas.style.display = 'inline'
+function updateDebugTrailVisibility() {
+    if (drawDebugTrail) {
+        debugCanvas.style.display = 'inline'
+    }
+    else{
+        debugCanvas.style.display = 'none'
+    }    
+    requestAnimationFrame(updateDebugTrailVisibility);
 }
-else{
-    debugCanvas.style.display = 'none'
-}
+requestAnimationFrame(updateDebugTrailVisibility);
 
 // Set canvas size to match window
 debugCanvas.width = window.innerWidth;

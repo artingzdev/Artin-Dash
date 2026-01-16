@@ -98,6 +98,7 @@
   height: 40vh;
   /* transform: translateY(14dvh); */
   opacity: 0.39;
+  display: none;
 }
 
 #groundUpperShadowRight{
@@ -112,4 +113,5 @@
   translate: 0 14dvh;
 
   opacity: 0.39;
+  display: none;
 }

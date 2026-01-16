@@ -1,6 +1,3 @@
-let gameBgTexture = "07"; // 01 - 59
-let gameBgColor = '#000564';
-
 const gameBg = document.getElementById('gameBg');
 
 let lastTimeGameBg = 0;

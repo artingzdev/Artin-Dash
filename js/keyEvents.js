@@ -16,6 +16,20 @@ document.addEventListener('keyup', (event) => {
     if (event.code === 'Space' || event.key === 'ArrowUp' || event.key === 'w') {
         isJumping = false;
     }
+
+    if (event.key === 'd') {
+        drawDebugTrail = !drawDebugTrail;
+    }
+
+    if (event.key === '0') {gameSpeed = 0}
+    if (event.key === '1') {gameSpeed = 1}
+    if (event.key === '2') {gameSpeed = 2}
+    if (event.key === '3') {gameSpeed = 3}
+    if (event.key === '4') {gameSpeed = 4}
+
+    if (event.key === 'y') {
+        isSlowModeEnabled = !isSlowModeEnabled;
+    }
 });
 
 window.addEventListener("blur", () => {
@@ -34,11 +48,10 @@ document.addEventListener('mouseup', (e) => {
 
 // ── Mobile touch support ────────────────────────────────────
 document.addEventListener('touchstart', (e) => {
-    // Prevent scrolling/zooming on some mobile browsers
     
     isJumping = true;
     jump();
-}, { passive: false });   // passive: false needed if you use preventDefault()
+}, { passive: false });
 
 document.addEventListener('touchend', () => {
     isJumping = false;
@@ -51,7 +64,6 @@ function checkInput(currentTime) {
     const dt = (currentTime - lastInputCheck) / 1000;
     lastInputCheck = currentTime;
 
-    // Desktop/keyboard/mouse jump (hold to jump or continuous check)
     const jumpInputActive = 
         keysPressed['Space'] || 
         keysPressed['ArrowUp'] || 
@@ -62,7 +74,7 @@ function checkInput(currentTime) {
         isJumping = true;
         jump();
     } else {
-        // Only reset on desktop input release (mobile uses touchend)
+
         if (!('ontouchstart' in window)) {
             isJumping = false;
         }
@@ -71,8 +83,6 @@ function checkInput(currentTime) {
     if (keysPressed['Enter']) {
         setGroundsDistance(10);
     }
-
-    // console.log(groundY); // ← uncomment for debugging
 
     requestAnimationFrame(checkInput);
 }

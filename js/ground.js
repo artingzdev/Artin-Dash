@@ -8,11 +8,7 @@ const groundLowerShadowLeft = document.getElementById('groundLowerShadowLeft');
 const groundLowerShadowRight = document.getElementById('groundLowerShadowRight');
 const groundUpperShadowLeft = document.getElementById('groundUpperShadowLeft');
 const groundUpperShadowRight = document.getElementById('groundUpperShadowRight');
- 
-let groundTexture = "04"; // 01 - 07
-let groundColor = '#000137';
-let lineColor = '#009DFF';
-let lineBlendingEnabled = 'true';
+
 
 function updateGround() {
     groundLower.style.backgroundImage = `url('resources/grounds/groundSquare_${groundTexture}_001-uhd.png')`;
