@@ -49,44 +49,59 @@ function moveGround(timestamp) {
 requestAnimationFrame(moveGround);
 
 function setGroundsDistance(distGridSpaces) {
-  groundUpper.style.display = 'block';
-  groundUpperLine.style.display = 'block';
-  groundUpperShadowLeft.display = 'block';
-  groundUpperShadowRight.display = 'block';
   // ground transition easing
   groundLower.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
   groundUpper.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
   groundLowerLine.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
   groundUpperLine.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
+  groundLowerShadowLeft.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
+  groundLowerShadowRight.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
+  groundUpperShadowLeft.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
+  groundUpperShadowRight.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
   //player.style.transition = 'bottom 500ms ease-in-out';
 
-  updateGroundY();
   setPlayerPosition();
 
   let groundTranslateAmount = (0.40 * window.innerHeight) - ((window.innerHeight - gridSpacesToPixels(distGridSpaces)) / 2)
+
   groundLower.style.transform = `translateY(${pixelsToDvh(groundTranslateAmount)}dvh)`; // set the ground positions based on the area provided in the function parameters
   groundUpper.style.transform = `translateY(-${pixelsToDvh(groundTranslateAmount)}dvh) scaleY(-1)`; // set the ground positions based on the area provided in the function parameters
+  
   groundLowerLine.style.transform = `translateY(calc(${pixelsToDvh(groundTranslateAmount)}dvh + 0.3dvh)`; // update line position
   groundUpperLine.style.transform = `translateY(calc(${40 - pixelsToDvh(groundTranslateAmount)}dvh + 0.3dvh)`; // update line position
+  
+  groundLowerShadowLeft.style.transform = `translateY(calc(${pixelsToDvh(groundTranslateAmount)}dvh)`; // update shadow position
+  groundLowerShadowRight.style.transform = `translateY(calc(${pixelsToDvh(groundTranslateAmount)}dvh)) scaleX(-1)`; // update shadow position
 
-  updateGroundY();
+  groundUpperShadowLeft.style.transform = `translateY(calc(-${pixelsToDvh(groundTranslateAmount)}dvh)`; // update shadow position
+  groundUpperShadowRight.style.transform = `translateY(calc(-${pixelsToDvh(groundTranslateAmount)}dvh)) scaleX(-1)`; // update shadow position
+
   setPlayerPosition();
   //groundY = `${pixelsToDvh((window.innerHeight - gridSpacesToPixels(distGridSpaces)) / 2)}dvh`;
 }
 
 function resetGrounds() {
-  groundUpper.style.display = 'none';
-  //groundUpperLine.style.display = 'none';
-  groundUpperShadowLeft.display = 'none';
-  groundUpperShadowRight.display = 'none';
+  // groundUpper.style.display = 'none';
+  // groundUpperLine.style.display = 'none';
+  // groundUpperShadowLeft.display = 'none';
+  // groundUpperShadowRight.display = 'none';
 }
 
 function updateGroundY() {
+
   groundMatrix = window.getComputedStyle(groundLower).transform;
   const matrixValuesString = groundMatrix.replace('matrix(', '').replace(')', '');
   const matrixArrayStrings = matrixValuesString.split(/,\s*|\s+/); // Splits by commas and/or spaces
   const matrixArray = matrixArrayStrings.map(Number);
-  groundY = `${40 - (pixelsToDvh(matrixArray[5]))}dvh`;
-}
 
-//resetGrounds();
+  groundUpperMatrix = window.getComputedStyle(groundUpper).transform;
+  const matrixValuesStringUpper = groundUpperMatrix.replace('matrix(', '').replace(')', '');
+  const matrixArrayStringsUpper = matrixValuesStringUpper.split(/,\s*|\s+/); // Splits by commas and/or spaces
+  const matrixArrayUpper = matrixArrayStringsUpper.map(Number);
+
+  groundY = `${40 - (pixelsToDvh(matrixArray[5]))}dvh`;
+  groundYUpper = `${(pixelsToDvh(matrixArrayUpper[5]))}dvh`;
+  requestAnimationFrame(updateGroundY);
+}
+requestAnimationFrame(updateGroundY);
+resetGrounds();

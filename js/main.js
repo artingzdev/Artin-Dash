@@ -12,6 +12,7 @@ function pixelsToDvh(px) {
 
 let timeWarp = 1;
 let isSlowModeEnabled = false;
+let cameraPosY = 100; // pixels
 
 // Utilities
 let drawDebugTrail = false;
@@ -63,10 +64,10 @@ let playerGravity = 1 // 1 = normal -1 = upside-down
 
 const gameBgSpeed = 0.1;
 
-let groundTexture = "05"; // 01 - 07
-let groundColor = '#35008A';
+let groundTexture = "01"; // 01 - 07
+let groundColor = '#0066FF';
 let lineColor = '#FFFFFF';
 let lineBlendingEnabled = 'true';
 
-let gameBgTexture = "05"; // 01 - 59
-let gameBgColor = '#4700D2';
+let gameBgTexture = "01"; // 01 - 59
+let gameBgColor = '#287DFF';

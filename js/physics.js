@@ -2,6 +2,7 @@ const player = document.getElementById('player');
 const cube = document.getElementById('cube');   
 
 let groundY = '26dvh';
+let groundYUpper = '0dvh';
 
 let playerY = gridSpacesToPixels(0);
 let v = 0;
