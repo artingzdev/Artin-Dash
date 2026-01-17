@@ -119,7 +119,6 @@ function jump() {
     updateJumpVelocity(arrayIndex)
 
     v = -jumpVelocityCubeBig;
-    cube.style.transition = "bottom 500ms ease-in-out";
     cubeRotating = true;
   }
 }

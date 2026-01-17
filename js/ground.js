@@ -94,15 +94,17 @@ function resetGrounds() {
 
   groundLower.style.transform = `translateY(14dvh)`;
   groundUpper.style.transform = `translateY(-40dvh) scaleY(-1)`;
-  
+
   groundLowerLine.style.transform = `translateY(calc(14dvh + 0.3dvh))`;
   groundUpperLine.style.transform = `translateY(0dvh)`;
-  
+
   groundLowerShadowLeft.style.transform = `translateY(14dvh)`
   groundLowerShadowRight.style.transform = `translateY(14dvh) scaleX(-1)`;
 
   groundUpperShadowLeft.style.transform = `translateY(-40dvh)`;
   groundUpperShadowRight.style.transform = `translateY(-40dvh) scaleX(-1)`;
+
+  groundY = '26dvh';
 
   setPlayerPosition();
 }
