@@ -58,3 +58,7 @@ html, body {
 #cube img:first-child{ /*cube glow img*/
   position: absolute;
 }
+
+#debug-trail{
+  transform: translateY(0px);
+}

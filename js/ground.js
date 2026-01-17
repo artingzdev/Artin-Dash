@@ -9,6 +9,9 @@ const groundLowerShadowRight = document.getElementById('groundLowerShadowRight')
 const groundUpperShadowLeft = document.getElementById('groundUpperShadowLeft');
 const groundUpperShadowRight = document.getElementById('groundUpperShadowRight');
 
+const debugTrail = document.getElementById("debug-trail")
+let debugTrailOffset = 0; //px
+
 
 function updateGround() {
     groundLower.style.backgroundImage = `url('resources/grounds/groundSquare_${groundTexture}_001-uhd.png')`;
@@ -58,6 +61,7 @@ function setGroundsDistance(distGridSpaces) {
   groundLowerShadowRight.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
   groundUpperShadowLeft.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
   groundUpperShadowRight.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
+  //debugTrail.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
   //player.style.transition = 'bottom 500ms ease-in-out';
 
   setPlayerPosition();
@@ -76,6 +80,7 @@ function setGroundsDistance(distGridSpaces) {
   groundUpperShadowLeft.style.transform = `translateY(calc(-${pixelsToDvh(groundTranslateAmount)}dvh)`; // update shadow position
   groundUpperShadowRight.style.transform = `translateY(calc(-${pixelsToDvh(groundTranslateAmount)}dvh)) scaleX(-1)`; // update shadow position
 
+  //debugTrail.style.transform = `translateY(${pixelsToDvh(groundTranslateAmount)}dvh)`;
   setPlayerPosition();
   //groundY = `${pixelsToDvh((window.innerHeight - gridSpacesToPixels(distGridSpaces)) / 2)}dvh`;
 }

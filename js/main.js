@@ -10,6 +10,10 @@ function pixelsToDvh(px) {
   return ((px / window.innerHeight) * 100);
 }
 
+function dvhToPixels(dvh){
+    return (dvh * window.innerHeight) / 100
+}
+
 let timeWarp = 1;
 let isSlowModeEnabled = false;
 let cameraPosY = 100; // pixels

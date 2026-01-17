@@ -26,6 +26,7 @@ debugCanvas.style.pointerEvents = 'none';
 // Track trail points
 let trailPoints = [];
 let lastTrailUpdate = performance.now();
+let lastGroundRenderHeight = dvhToPixels(parseFloat(groundY.split('d')[0]));
 
 function updateDebugTrail(currentTime) {
     const dt = (currentTime - lastTrailUpdate) / 1000;
@@ -33,6 +34,26 @@ function updateDebugTrail(currentTime) {
     // Update ~240 times per second
     if (dt >= 1/240) {
         lastTrailUpdate = currentTime;
+
+        // Set debug trail offset
+        if (debugTrail) {
+        const matrix = window.getComputedStyle(debugTrail).transform;
+        if (matrix !== 'none') {
+            const values = matrix.split('(')[1].split(')')[0].split(',');
+            debugTrailOffset = parseFloat(values[5]) || 0; // matrix(..., translateY)
+        }
+        }
+
+        //console.log(debugTrailOffset);
+
+        for (let i = 1; i < trailPoints.length; i++) {
+            const currentGroundRenderHeight = dvhToPixels(parseFloat(groundY.split('d')[0]));
+            const groundRenderHeightDifference = lastGroundRenderHeight - currentGroundRenderHeight;
+            trailPoints[i].y += groundRenderHeightDifference;
+            //console.log(groundRenderHeightDifference);
+        }  
+        
+        lastGroundRenderHeight = dvhToPixels(parseFloat(groundY.split('d')[0]));
         
         // Get player screen position
         const playerRect = player.getBoundingClientRect();
@@ -41,8 +62,8 @@ function updateDebugTrail(currentTime) {
         
         // Convert screen coordinates to world coordinates
         const worldX = playerCenterX - scrollX;
-        const worldY = playerCenterY;
-        
+        const worldY = window.innerHeight - dvhToPixels(parseFloat(groundY.split('d')[0])) - playerRect.height / 2 - playerY;
+
         // Store trail point in world coordinates
         trailPoints.push({
             x: worldX,
