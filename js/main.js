@@ -83,11 +83,11 @@ let isSlowModeEnabled = false;
 
 const gameBgSpeed = 0.1;
 
-let groundTexture = "08"; // 01 - 08
-let groundColor = '#0066FF';
-let ground2Color = '#00ff37';
-let lineColor = '#FFFFFF';
+let groundTexture = "12"; // 01 - 22
+let groundColor = '#AD0067';
+let ground2Color = '#FF0056';
+let lineColor = '#FFCA04';
 let lineBlendingEnabled = 'true';
 
-let gameBgTexture = "11"; // 01 - 59
-let gameBgColor = '#287DFF';
+let gameBgTexture = "14"; // 01 - 59
+let gameBgColor = '#5D004E';
