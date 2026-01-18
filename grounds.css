@@ -31,7 +31,7 @@
 }
 
 #groundLowerShadowLeft{
-    user-select: none;
+  user-select: none;
   position: absolute;
   bottom: 0;
   width: calc(0.7 * 40vh);
@@ -41,7 +41,7 @@
 }
 
 #groundLowerShadowRight{
-    user-select: none;
+  user-select: none;
   position: absolute;
   bottom: 0;
   right: 0;

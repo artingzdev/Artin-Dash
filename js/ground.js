@@ -27,40 +27,22 @@ function updateGround() {
       groundLowerLine.style.mixBlendMode = 'normal';
       groundUpperLine.style.mixBlendMode = 'normal';
     }
-    requestAnimationFrame(updateGround);
 }
-requestAnimationFrame(updateGround);
 
 let scrollX = 0;
+let scrollY = 0;
 let lastTimeGround = 0;
-
-function moveGround(timestamp) {
-  if (!lastTimeGround) lastTimeGround = timestamp;
-  const deltaTime = (timestamp - lastTimeGround) / 1000; // seconds since last frame
-  lastTimeGround = timestamp;
-
-  const speedPerSecond = gridSpacesToPixels(1) * speed[gameSpeed].game * speedMultiplier * timeWarp;
-  const deltaPixels = speedPerSecond * deltaTime;
-
-  scrollX -= deltaPixels;
-  groundLower.style.backgroundPositionX = scrollX + "px";
-  groundUpper.style.backgroundPositionX = scrollX + "px";
-
-  requestAnimationFrame(moveGround);
-}
-
-//requestAnimationFrame(moveGround);
 
 function setGroundsDistance(distGridSpaces) {
   // ground transition easing
-  groundLower.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
-  groundUpper.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
-  groundLowerLine.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
-  groundUpperLine.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
-  groundLowerShadowLeft.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
-  groundLowerShadowRight.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
-  groundUpperShadowLeft.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
-  groundUpperShadowRight.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
+  // groundLower.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
+  // groundUpper.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
+  // groundLowerLine.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
+  // groundUpperLine.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
+  // groundLowerShadowLeft.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
+  // groundLowerShadowRight.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
+  // groundUpperShadowLeft.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
+  // groundUpperShadowRight.style.transition = `transform ${500 / timeWarp}ms ease-in-out`;
 
   setPlayerPosition();
 
@@ -93,27 +75,6 @@ function resetGrounds() {
 
   groundUpperShadowLeft.style.transform = `translateY(-40dvh)`;
   groundUpperShadowRight.style.transform = `translateY(-40dvh) scaleX(-1)`;
-
-  groundY = '26dvh';
-
   setPlayerPosition();
 }
-
-function updateGroundY() {
-
-  groundMatrix = window.getComputedStyle(groundLower).transform;
-  const matrixValuesString = groundMatrix.replace('matrix(', '').replace(')', '');
-  const matrixArrayStrings = matrixValuesString.split(/,\s*|\s+/); // Splits by commas and/or spaces
-  const matrixArray = matrixArrayStrings.map(Number);
-
-  groundUpperMatrix = window.getComputedStyle(groundUpper).transform;
-  const matrixValuesStringUpper = groundUpperMatrix.replace('matrix(', '').replace(')', '');
-  const matrixArrayStringsUpper = matrixValuesStringUpper.split(/,\s*|\s+/); // Splits by commas and/or spaces
-  const matrixArrayUpper = matrixArrayStringsUpper.map(Number);
-
-  groundY = `${40 - (pixelsToDvh(matrixArray[5]))}dvh`;
-  groundYUpper = `${(pixelsToDvh(matrixArrayUpper[5]))}dvh`;
-  requestAnimationFrame(updateGroundY);
-}
-requestAnimationFrame(updateGroundY);
 resetGrounds();

@@ -17,10 +17,6 @@ function dvhToPixels(dvh){
 let timeWarpAmount = 0.1;
 let timeWarp = 1;
 
-// Utilities
-let drawDebugTrail = false;
-let isSlowModeEnabled = false;
-
 function updateTimeWarpAmount() {
     if (isSlowModeEnabled) {
         timeWarp = timeWarpAmount;
@@ -72,6 +68,8 @@ const camera = {
 };
 
 
+
+// Utilities
 // 0 = Half speed
 // 1 = Normal speed
 // 2 = 2x speed
@@ -79,6 +77,9 @@ const camera = {
 // 4 = 4x speed
 let gameSpeed = 1
 let playerGravity = 1 // 1 = Normal -1 = Upside-down
+
+let drawDebugTrail = false;
+let isSlowModeEnabled = false;
 
 const gameBgSpeed = 0.1;
 

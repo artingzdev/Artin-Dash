@@ -1,3 +1,4 @@
 # TO DO
-- Fix player Y delay on setGroundsDistance()
+- Make setGroundsDistance() work with new camera physics
+- Multi-layer grounds
 - Wave gamemode

@@ -28,12 +28,10 @@ let trailPoints = [];
 let lastTrailUpdate = performance.now();
 let lastGroundRenderHeight = dvhToPixels(parseFloat(groundY.split('d')[0]));
 
-function updateDebugTrail(currentTime) {
-    const dt = (currentTime - lastTrailUpdate) / 1000;
+function updateDebugTrail(dt) {
     
     // Update ~240 times per second
     if (dt >= 1/240) {
-        lastTrailUpdate = currentTime;
 
         // Set debug trail offset
         if (debugTrail) {
@@ -45,13 +43,7 @@ function updateDebugTrail(currentTime) {
         }
 
         //console.log(debugTrailOffset);
-
-        for (let i = 1; i < trailPoints.length; i++) {
-            const currentGroundRenderHeight = dvhToPixels(parseFloat(groundY.split('d')[0]));
-            const groundRenderHeightDifference = lastGroundRenderHeight - currentGroundRenderHeight;
-            trailPoints[i].y += groundRenderHeightDifference;
-            //console.log(groundRenderHeightDifference);
-        }  
+ 
         
         lastGroundRenderHeight = dvhToPixels(parseFloat(groundY.split('d')[0]));
         
@@ -68,7 +60,7 @@ function updateDebugTrail(currentTime) {
         trailPoints.push({
             x: worldX,
             y: worldY,
-            time: currentTime
+            time: performance.now()
         });
         
         // Remove points that have scrolled off the left side of the screen
@@ -99,7 +91,4 @@ function updateDebugTrail(currentTime) {
         // Restore canvas state
         debugCtx.restore();
     }
-    
-    requestAnimationFrame(updateDebugTrail);
 }
-requestAnimationFrame(updateDebugTrail);

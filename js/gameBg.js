@@ -1,7 +1,5 @@
 const gameBg = document.getElementById('gameBg');
 
-let lastTimeGameBg = 0;
-
 function updateGameBg() {
     gameBg.style.backgroundImage = `url('resources/backgrounds/game_bg_${gameBgTexture}_001-uhd.png')`;
     r.style.setProperty('--game-bg-color', gameBgColor);
@@ -20,7 +18,7 @@ function moveGameBg(timestamp) {
   const deltaPixels = speedPerSecond * deltaTime;
 
   scrollXGameBg -= deltaPixels;
-  gameBg.style.backgroundPositionX = scrollXGameBg + "px";
+  gameBg.style.backgroundPositionX = scrollXGameBg + "px";  
   requestAnimationFrame(moveGameBg);
 }
 //requestAnimationFrame(moveGameBg)

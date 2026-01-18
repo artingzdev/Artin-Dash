@@ -42,7 +42,7 @@ window.addEventListener("blur", () => {
     leftMouseDown = false;
 });
 
-// ── Mouse controls) ─────────────────────
+// ── Mouse controls ─────────────────────
 document.addEventListener('mousedown', (e) => {
     if (e.button === 0) leftMouseDown = true;
 });
@@ -98,11 +98,11 @@ function checkInput(currentTime) {
     }
 
     if (keysPressed['l']) {
-        camera.targetX += gridSpacesToPixels(0.25);
+        camera.targetX += gridSpacesToPixels(1) * speed[gameSpeed].game * speedMultiplier * timeWarp * dt;
     }
 
     if (keysPressed['j']) {
-        camera.targetX -= gridSpacesToPixels(0.25);
+        camera.targetX -= gridSpacesToPixels(1) * speed[gameSpeed].game * speedMultiplier * timeWarp * dt;
     }
 
     requestAnimationFrame(checkInput);
