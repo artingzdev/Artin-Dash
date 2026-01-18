@@ -64,7 +64,7 @@ const camera = {
   velocityX: 0,
 
   minX: -gridSpacesToPixels(1),      // Leftmost allowed camera X (px)
-  minY: -2000       // Lowest allowed camera Y (px)
+  minY: 0      // Lowest allowed camera Y (px)
 };
 
 

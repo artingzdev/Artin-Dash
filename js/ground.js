@@ -19,21 +19,26 @@ let groundImageHeight = 512;
 
 function updateGround() {
     
-    const ground2Img = new Image();
-    ground2Img.src = `resources/grounds/groundSquare_${groundTexture}_2_001-uhd.png`;
-    ground2Img.onload = function() {
-      ground2ImageHeight = this.height;
+    if (groundTexture >= "08") {
+      const ground2Img = new Image();
+      ground2Img.src = `resources/grounds/groundSquare_${groundTexture}_2_001-uhd.png`;
+      ground2Img.onload = function() {
+        ground2ImageHeight = this.height;
+      }    
+      
+      groundLower2.style.setProperty(
+        "--ground2-mask",
+        `url("resources/grounds/groundSquare_${groundTexture}_2_001-uhd.png")`
+      );
+
+      groundLower2.style.backgroundImage = `url('resources/grounds/groundSquare_${groundTexture}_2_001-uhd.png')`
     }
+
     const groundImg = new Image();
     groundImg.src = `resources/grounds/groundSquare_${groundTexture}_001-uhd.png`;
     groundImg.onload = function() {
       groundImageHeight = this.height;
     }
-
-    groundLower2.style.setProperty(
-    "--ground2-mask",
-    `url("resources/grounds/groundSquare_${groundTexture}_2_001-uhd.png")`
-    );
 
     groundLower2.style.setProperty(
     "--ground2-mask-size",
@@ -44,7 +49,7 @@ function updateGround() {
     groundLower.style.backgroundSize = `auto ${groundImageHeight * 100 / 512}%`;
 
     groundLower.style.backgroundImage = `url('resources/grounds/groundSquare_${groundTexture}_001-uhd.png')`;
-    groundLower2.style.backgroundImage = `url('resources/grounds/groundSquare_${groundTexture}_2_001-uhd.png')`;
+    
     groundUpper.style.backgroundImage = `url('resources/grounds/groundSquare_${groundTexture}_001-uhd.png')`;
 
     r.style.setProperty('--ground-color', groundColor);

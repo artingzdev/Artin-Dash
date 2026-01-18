@@ -17,7 +17,7 @@ function updateCamera(dt) {
   camera.x = camera.targetX;
   camera.velocityX = 0;
 
-  const stiffnessY = 80;
+  const stiffnessY = 100;
   const dampingY = 0.8;
 
   let dy = camera.targetY - camera.y;
