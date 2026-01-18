@@ -9,6 +9,7 @@
 
   background-repeat: repeat-x;
   background-size: auto 100%;
+  background-position-y: bottom;
 }
 
 #groundLower::after {
@@ -20,6 +21,41 @@
   mix-blend-mode: multiply;
   pointer-events: none;
 }
+
+#groundLower2 {
+  transform: translateY(14dvh);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40vh;
+
+  background-image: url("resources/grounds/groundSquare_08_2_001-uhd.png");
+  background-repeat: repeat-x;
+  background-size: var(--ground2-mask-size);
+}
+
+#groundLower2::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-color: var(--ground2-color);
+
+  -webkit-mask-image: var(--ground2-mask);
+  mask-image: var(--ground2-mask);
+
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+
+  -webkit-mask-size: var(--ground2-mask-size);
+  mask-size: var(--ground2-mask-size);
+
+  mask-position: var(--ground2-mask-position);
+
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
 
 #groundLowerLine {
   position: absolute;

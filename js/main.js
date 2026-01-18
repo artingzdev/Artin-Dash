@@ -64,7 +64,7 @@ const camera = {
   velocityX: 0,
 
   minX: -gridSpacesToPixels(1),      // Leftmost allowed camera X (px)
-  minY: 0       // Lowest allowed camera Y (px)
+  minY: -2000       // Lowest allowed camera Y (px)
 };
 
 
@@ -83,10 +83,11 @@ let isSlowModeEnabled = false;
 
 const gameBgSpeed = 0.1;
 
-let groundTexture = "01"; // 01 - 07
+let groundTexture = "08"; // 01 - 08
 let groundColor = '#0066FF';
+let ground2Color = '#00ff37';
 let lineColor = '#FFFFFF';
 let lineBlendingEnabled = 'true';
 
-let gameBgTexture = "01"; // 01 - 59
+let gameBgTexture = "11"; // 01 - 59
 let gameBgColor = '#287DFF';

@@ -5,6 +5,7 @@ const cubeGlowScale = 128/120;
 function setPlayerGlow(){
     cubeGlow.style.width = `${gridSpacesToPixels(cubeGlowScale)}px`;
     cubeGlow.style.height = `${gridSpacesToPixels(cubeGlowScale)}px`;   
+    cubeGlow.style.display = 'block';
     requestAnimationFrame(setPlayerGlow);
 }
 requestAnimationFrame(setPlayerGlow);

@@ -8,17 +8,3 @@ function updateGameBg() {
 updateGameBg();
 
 let scrollXGameBg = 0;
-
-function moveGameBg(timestamp) {
-  if (!lastTimeGameBg) lastTimeGameBg = timestamp;
-  const deltaTime = (timestamp - lastTimeGameBg) / 1000; // seconds
-  lastTimeGameBg = timestamp;
-
-  const speedPerSecond = gridSpacesToPixels(1) * speed[gameSpeed].game * speedMultiplier * gameBgSpeed * timeWarp;
-  const deltaPixels = speedPerSecond * deltaTime;
-
-  scrollXGameBg -= deltaPixels;
-  gameBg.style.backgroundPositionX = scrollXGameBg + "px";  
-  requestAnimationFrame(moveGameBg);
-}
-//requestAnimationFrame(moveGameBg)

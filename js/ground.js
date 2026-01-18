@@ -1,4 +1,5 @@
 const groundLower = document.getElementById("groundLower");
+const groundLower2 = document.getElementById("groundLower2");
 const groundUpper = document.getElementById("groundUpper");
 
 const groundLowerLine = document.getElementById("groundLowerLine");
@@ -12,11 +13,43 @@ const groundUpperShadowRight = document.getElementById('groundUpperShadowRight')
 const debugTrail = document.getElementById("debug-trail")
 let debugTrailOffset = 0; //px
 
+let ground2ImageHeight = 512;
+let groundImageHeight = 512;
+
 
 function updateGround() {
+    
+    const ground2Img = new Image();
+    ground2Img.src = `resources/grounds/groundSquare_${groundTexture}_2_001-uhd.png`;
+    ground2Img.onload = function() {
+      ground2ImageHeight = this.height;
+    }
+    const groundImg = new Image();
+    groundImg.src = `resources/grounds/groundSquare_${groundTexture}_001-uhd.png`;
+    groundImg.onload = function() {
+      groundImageHeight = this.height;
+    }
+
+    groundLower2.style.setProperty(
+    "--ground2-mask",
+    `url("resources/grounds/groundSquare_${groundTexture}_2_001-uhd.png")`
+    );
+
+    groundLower2.style.setProperty(
+    "--ground2-mask-size",
+    `auto ${ground2ImageHeight * 100 / 512}%`
+    );
+
+    groundLower2.style.backgroundSize = `auto ${ground2ImageHeight * 100 / 512}%`;
+    groundLower.style.backgroundSize = `auto ${groundImageHeight * 100 / 512}%`;
+
     groundLower.style.backgroundImage = `url('resources/grounds/groundSquare_${groundTexture}_001-uhd.png')`;
+    groundLower2.style.backgroundImage = `url('resources/grounds/groundSquare_${groundTexture}_2_001-uhd.png')`;
     groundUpper.style.backgroundImage = `url('resources/grounds/groundSquare_${groundTexture}_001-uhd.png')`;
+
     r.style.setProperty('--ground-color', groundColor);
+    r.style.setProperty('--ground2-color', ground2Color);
+
     groundLowerLine.style.backgroundImage = `linear-gradient(to right, rgba(255, 255, 255, 0), ${lineColor}, rgba(255, 255, 255, 0))`;
     groundUpperLine.style.backgroundImage = `linear-gradient(to right, rgba(255, 255, 255, 0), ${lineColor}, rgba(255, 255, 255, 0))`;
     if (lineBlendingEnabled) {

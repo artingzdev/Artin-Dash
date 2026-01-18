@@ -8,7 +8,12 @@ html, body {
 
 :root{
     --ground-color: #0066FF;
+    --ground2-color: #0066FF;
     --game-bg-color: #287DFF;
+
+    --ground2-mask: url('resources/grounds/groundSquare_1_001-uhd.png');
+    --ground2-mask-size: auto 100%;
+    --ground2-mask-position: 0px 0px;
 }
 
 #world {
@@ -70,4 +75,8 @@ html, body {
 
 #debug-trail{
   transform: translateY(0px);
+}
+
+#cube img:first-child{
+  display: none;
 }

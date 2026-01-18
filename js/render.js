@@ -51,11 +51,19 @@ function moveGroundAndGameBg() {
   scrollY -= cameraDeltaY;
 
   // Ground
-  groundLower.style.backgroundPositionX =
-    `${scrollX}px`;
-  groundUpper.style.backgroundPositionX =
-    `${scrollX}px`;
+  groundLower.style.backgroundPositionX = `${scrollX}px`;
+
+  groundUpper.style.backgroundPositionX = `${scrollX}px`;
+
+  groundLower2.style.backgroundPositionX = `${scrollX}px`;
+
+  groundLower2.style.setProperty(
+    "--ground2-mask-position",
+    `${scrollX}px 0px`
+  );
+
   groundLower.style.transform = `translateY(calc(14dvh - ${scrollY}px))`;
+  groundLower2.style.transform = `translateY(calc(14dvh - ${scrollY}px))`;
   groundLowerLine.style.transform = `translateY(calc(14dvh + 0.3dvh - ${scrollY}px))`;
   groundLowerShadowLeft.style.transform = `translateY(calc(14dvh - ${scrollY}px))`;
   groundLowerShadowRight.style.transform = `translateY(calc(14dvh - ${scrollY}px)) scaleX(-1)`;
