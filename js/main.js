@@ -14,17 +14,16 @@ function dvhToPixels(dvh){
     return (dvh * window.innerHeight) / 100
 }
 
+let timeWarpAmount = 0.1;
 let timeWarp = 1;
-let isSlowModeEnabled = false;
-let cameraPosY = 100; // pixels
 
 // Utilities
 let drawDebugTrail = false;
-
+let isSlowModeEnabled = false;
 
 function updateTimeWarpAmount() {
     if (isSlowModeEnabled) {
-        timeWarp = 0.1;
+        timeWarp = timeWarpAmount;
     }
     else{
         timeWarp = 1;
@@ -32,6 +31,8 @@ function updateTimeWarpAmount() {
     requestAnimationFrame(updateTimeWarpAmount);
 }
 requestAnimationFrame(updateTimeWarpAmount);
+
+const speedMultiplier = 10.3854448;
 
 const speed = [
     {// half speed ↓
@@ -57,14 +58,27 @@ const speed = [
     } 
 ]
 
+const camera = {
+  y: 0,
+  targetY: 0,
+  velocityY: 0,
 
-// 0 = half speed
-// 1 = normal speed
+  x: 0,
+  targetX: 0,
+  velocityX: 0,
+
+  minX: -gridSpacesToPixels(1),      // Leftmost allowed camera X (px)
+  minY: 0       // Lowest allowed camera Y (px)
+};
+
+
+// 0 = Half speed
+// 1 = Normal speed
 // 2 = 2x speed
 // 3 = 3x speed
 // 4 = 4x speed
 let gameSpeed = 1
-let playerGravity = 1 // 1 = normal -1 = upside-down
+let playerGravity = 1 // 1 = Normal -1 = Upside-down
 
 const gameBgSpeed = 0.1;
 

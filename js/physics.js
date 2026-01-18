@@ -5,6 +5,7 @@ let groundY = '26dvh';
 let groundYUpper = '0dvh';
 
 let playerY = gridSpacesToPixels(0);
+
 let v = 0;
 //const gCubeBig = 0.45;
 let gCubeBig = gridSpacesToPixels(87);
@@ -114,6 +115,8 @@ function jump() {
     } else {
         consecutiveJumps = 1;
     }
+
+    cube.style.transition = 'none';
     
     const arrayIndex = (consecutiveJumps >= 2) ? 1 : 0;
     updateJumpVelocity(arrayIndex)

@@ -39,7 +39,7 @@ function moveGround(timestamp) {
   const deltaTime = (timestamp - lastTimeGround) / 1000; // seconds since last frame
   lastTimeGround = timestamp;
 
-  const speedPerSecond = gridSpacesToPixels(1) * speed[gameSpeed].game * 10.3854448 * timeWarp;
+  const speedPerSecond = gridSpacesToPixels(1) * speed[gameSpeed].game * speedMultiplier * timeWarp;
   const deltaPixels = speedPerSecond * deltaTime;
 
   scrollX -= deltaPixels;
@@ -49,7 +49,7 @@ function moveGround(timestamp) {
   requestAnimationFrame(moveGround);
 }
 
-requestAnimationFrame(moveGround);
+//requestAnimationFrame(moveGround);
 
 function setGroundsDistance(distGridSpaces) {
   // ground transition easing
@@ -82,16 +82,6 @@ function setGroundsDistance(distGridSpaces) {
 }
 
 function resetGrounds() {
-  const groundResetTimingFunction = 'cubic-bezier(.16,.62,.35,1)';
-  groundLower.style.transition = `transform ${800 / timeWarp}ms ${groundResetTimingFunction}`;
-  groundUpper.style.transition = `transform ${800 / timeWarp}ms ${groundResetTimingFunction}`;
-  groundLowerLine.style.transition = `transform ${800 / timeWarp}ms ${groundResetTimingFunction}`;
-  groundUpperLine.style.transition = `transform ${800 / timeWarp}ms ${groundResetTimingFunction}`;
-  groundLowerShadowLeft.style.transition = `transform ${800 / timeWarp}ms ${groundResetTimingFunction}`;
-  groundLowerShadowRight.style.transition = `transform ${800 / timeWarp}ms ${groundResetTimingFunction}`;
-  groundUpperShadowLeft.style.transition = `transform ${800 / timeWarp}ms ${groundResetTimingFunction}`;
-  groundUpperShadowRight.style.transition = `transform ${800 / timeWarp}ms ${groundResetTimingFunction}`;
-
   groundLower.style.transform = `translateY(14dvh)`;
   groundUpper.style.transform = `translateY(-40dvh) scaleY(-1)`;
 

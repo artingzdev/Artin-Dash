@@ -32,7 +32,7 @@ document.addEventListener('keyup', (event) => {
         isSlowModeEnabled = !isSlowModeEnabled;
     }
 
-    if (event.key == 'Escape') {
+    if (event.key === 'Escape') {
         resetGrounds();
     }
 });
@@ -87,6 +87,22 @@ function checkInput(currentTime) {
 
     if (keysPressed['Enter']) {
         setGroundsDistance(10);
+    }
+
+    if (keysPressed['i']) {
+        camera.targetY += gridSpacesToPixels(0.25);
+    }
+
+    if (keysPressed['k']) {
+        camera.targetY -= gridSpacesToPixels(0.25);
+    }
+
+    if (keysPressed['l']) {
+        camera.targetX += gridSpacesToPixels(0.25);
+    }
+
+    if (keysPressed['j']) {
+        camera.targetX -= gridSpacesToPixels(0.25);
     }
 
     requestAnimationFrame(checkInput);
