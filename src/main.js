@@ -12,7 +12,6 @@ export let app = new Application();
 export const defaultGroundPositionPercentage = (409/512);
 
 (async () => {
-  
   await app.init({
     resizeTo: window,
     antialias: false,
@@ -37,7 +36,7 @@ export const defaultGroundPositionPercentage = (409/512);
   app.stage.addChild(middlegroundContainer);
   app.stage.addChild(playerContainer);
   app.stage.addChild(groundContainer);
-  app.ticker.speed = tickSpeed;
+  //app.ticker.speed = tickSpeed;
 
   app.ticker.add((ticker) => {
     const deltaSeconds = ticker.deltaMS / 1000;

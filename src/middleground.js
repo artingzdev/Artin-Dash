@@ -8,8 +8,8 @@ export async function createMiddlegroundContainer(app) {
 
 
     // load textures
-    const middlegroundTexture = await Assets.load(`/assets/middlegrounds/fg_${middleground}_001-uhd.png`);
-    const middleground2Texture = await Assets.load(`/assets/middlegrounds/fg_${middleground}_2_001-uhd.png`);
+    const middlegroundTexture = await Assets.load(`assets/middlegrounds/fg_${middleground}_001-uhd.png`);
+    const middleground2Texture = await Assets.load(`assets/middlegrounds/fg_${middleground}_2_001-uhd.png`);
 
     middlegroundContainer.height = getRenderedSize(Math.max(middlegroundTexture.height, middleground2Texture.height));
     middlegroundContainer.width = app.screen.width;

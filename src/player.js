@@ -5,7 +5,7 @@ import { physics } from "./physics";
 export async function createPlayerContainer(app) {
     const playerContainer =  new Container();
     
-    const cubeTexture = await Assets.load('/assets/icons/cube.png');
+    const cubeTexture = await Assets.load('assets/icons/cube.png');
     const cubeSprite = new Sprite({
         texture: cubeTexture,
         width: getRenderedSize(cubeTexture.width),

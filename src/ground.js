@@ -12,11 +12,11 @@ export async function createGroundContainer(app) {
 
 
     // load textures
-  const groundTexture = await Assets.load(`/assets/grounds/groundSquare_${ground}_001-uhd.png`);
-  const ground2Texture = await Assets.load(`/assets/grounds/groundSquare_${ground}_2_001-uhd.png`);
-  const groundSquareShadowLeftTexture = await Assets.load(`/assets/groundSquareShadow_001.png`);
-  const groundSquareShadowRightTexture = await Assets.load(`/assets/groundSquareShadow_2_001.png`);
-  const floorLineTexture = await Assets.load("/assets/floorLine_01_001-uhd.png");
+  const groundTexture = await Assets.load(`assets/grounds/groundSquare_${ground}_001-uhd.png`);
+  const ground2Texture = await Assets.load(`assets/grounds/groundSquare_${ground}_2_001-uhd.png`);
+  const groundSquareShadowLeftTexture = await Assets.load(`assets/groundSquareShadow_001.png`);
+  const groundSquareShadowRightTexture = await Assets.load(`assets/groundSquareShadow_2_001.png`);
+  const floorLineTexture = await Assets.load("assets/floorLine_01_001-uhd.png");
 
 
   const groundTileScale = (getRenderedSize(512)) / 512;
