@@ -15,12 +15,12 @@ export const defaultGroundPositionPercentage = (409/512);
   await app.init({
     resizeTo: window,
     antialias: true,
-    resolution: window.devicePixelRatio || 1
+    roundPixels: true
+    //resolution: window.devicePixelRatio
   });
 
-  // ADD THIS LINE HERE:
   const container = document.getElementById("pixi-container");
-  container.innerHTML = ""; // Clear old canvas
+  //container.innerHTML = "";
   container.appendChild(app.canvas);
 
 
