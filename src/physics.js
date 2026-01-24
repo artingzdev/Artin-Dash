@@ -1,5 +1,5 @@
-import { gameSpeed, playerGravity, speed } from "./game-variables";
-import { degToRad, gridSpacesToPixels } from "./utils";
+import { gameSpeed, speed } from "./game-variables";
+import { degToRad } from "./utils";
 
 export let physics = {
     playerY: 5, // in grid spaces
@@ -46,7 +46,7 @@ export function rotateCube(dt) {
 }
 
 
-export function resetCubeRotation(dt){
+export function resetCubeRotation(){
     if (physics.cubeRotating === false && physics.playerY <= 0 && physics.isJumping == false){
 
         let closestRotation = Math.round(physics.cubeRotation/90) * 90
