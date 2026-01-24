@@ -14,6 +14,7 @@ const currentGen = window.__ARTIN_GEN__;
 
 export let app = new Application();
 export const defaultGroundPositionPercentage = 409 / 512;
+export let groundY = null;
 
 (async () => {
   await app.init({
@@ -42,6 +43,8 @@ export const defaultGroundPositionPercentage = 409 / 512;
 
   groundContainer.y =
     app.screen.height - getRenderedSize(512 * defaultGroundPositionPercentage);
+
+  groundY = groundContainer.y;
 
   const backgroundContainer = await createBackgroundContainer(app);
   if (window.__ARTIN_GEN__ !== currentGen) {
@@ -89,9 +92,10 @@ export const defaultGroundPositionPercentage = 409 / 512;
     middlegroundContainer.middlegroundSprite.tilePosition.x -= gridSpacesToPixels(scrollSpeed) * deltaSeconds * speed[gameSpeed].game * speedMultiplier.middlegroundX;
     middlegroundContainer.middleground2Sprite.tilePosition.x -= gridSpacesToPixels(scrollSpeed) * deltaSeconds * speed[gameSpeed].game * speedMultiplier.middlegroundX;
 
-    playerContainer.cubeSprite.y = groundContainer.y - gridSpacesToPixels(0.5) - gridSpacesToPixels(physics.playerY); updatePlayerY(deltaSeconds);
+    playerContainer.cubeSprite.y = groundContainer.y - gridSpacesToPixels(0.5) - gridSpacesToPixels(physics.playerY);
+    updatePlayerY(deltaSeconds);
     rotateCube(deltaSeconds);
-    resetCubeRotation(deltaSeconds);
+    //resetCubeRotation(deltaSeconds);
     updateJumpVelocity();
     playerContainer.cubeSprite.rotation = physics.cubeRotation;
 

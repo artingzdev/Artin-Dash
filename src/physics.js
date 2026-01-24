@@ -1,3 +1,4 @@
+import { easeOutCubic } from "./easing";
 import { gameSpeed, speed } from "./game-variables";
 import { jumpHeld } from "./key-states";
 import { degToRad, radToDeg } from "./utils";
@@ -17,10 +18,16 @@ export let physics = {
     isJumping: false,
     consecutiveJumps: 0,
     playerOffset: 2.5, // in grid spaces
-    closestRotation: 0
+    rotationResetting: false
 } 
-export let jumpVelocityCubeBig =  Math.sqrt(2 * physics.gCubeBig * speed[gameSpeed].jumpHeightCubeBig[0]);
 
+let resetStartTime = 0;
+let resetDuration = 0.2; // in seconds (500ms)
+let resetFrom = 0;
+let resetTo = 0;
+
+
+export let jumpVelocityCubeBig =  Math.sqrt(2 * physics.gCubeBig * speed[gameSpeed].jumpHeightCubeBig[0]);
 
 export function updatePlayerY(dt) {
 
@@ -31,12 +38,22 @@ export function updatePlayerY(dt) {
     physics.playerY -= physics.v * dt;
 
     // Ground collision
-    if (physics.playerY < 0) {
+    if (physics.playerY <= 0) {
         physics.playerY = 0;
         physics.v = 0;
         physics.cubeRotating = false;
         if (!physics.isJumping) {
             physics.consecutiveJumps = 0;
+        }
+        if (!jumpHeld) { // grounded
+            if (!physics.rotationResetting) {
+                physics.rotationResetting = true;
+                resetStartTime = performance.now();
+                resetFrom = radToDeg(physics.cubeRotation);
+                resetTo = Math.round(resetFrom / 90) * 90;
+            }
+            else{resetCubeRotation(dt)}
+            
         }
     }
 }
@@ -47,31 +64,47 @@ export function rotateCube(dt) {
     }
 }
 
-export function resetCubeRotation(){
-    if (!physics.cubeRotating && physics.playerY <= 0 && !physics.isJumping && !jumpHeld){
-        const closestRotationDeg = Math.round(radToDeg(physics.cubeRotation) / 90) * 90;
-        physics.cubeRotation = degToRad(closestRotationDeg); // convert back to radians
-        physics.closestRotation = closestRotationDeg; // store for reference
+export function resetCubeRotation() {
+    
+    if (!physics.rotationResetting) {
+        console.log("YOU DO NOT BELONG HERE")
+        return;
+    } 
+
+    const elapsed = (performance.now() - resetStartTime) / 1000;
+    const t = Math.min(elapsed / resetDuration, 1);
+    const eased = easeOutCubic(t);
+
+    const angle =
+        resetFrom + (resetTo - resetFrom) * eased;
+
+    physics.cubeRotation = degToRad(angle);
+
+    if (t === 1) {
+        physics.rotationResetting = false;
+        physics.cubeRotation = degToRad(resetTo);
     }
 }
 
+
 export function jump() {
-  if (physics.playerY === 0) {
+    physics.rotationResetting = false;
+    if (physics.playerY === 0) {
 
-    if (physics.consecutiveJumps === 0) {
-        physics.consecutiveJumps = 1;
-    } else if (physics.isJumping) {
-        physics.consecutiveJumps += 1;
-    } else {
-        physics.consecutiveJumps = 1;
+        if (physics.consecutiveJumps === 0) {
+            physics.consecutiveJumps = 1;
+        } else if (physics.isJumping) {
+            physics.consecutiveJumps += 1;
+        } else {
+            physics.consecutiveJumps = 1;
+        }
+        
+        const arrayIndex = (physics.consecutiveJumps >= 2) ? 1 : 0;
+        updateJumpVelocity(arrayIndex);
+
+        physics.v = -jumpVelocityCubeBig;
+        physics.cubeRotating = true;
     }
-    
-    const arrayIndex = (physics.consecutiveJumps >= 2) ? 1 : 0;
-    updateJumpVelocity(arrayIndex);
-
-    physics.v = -jumpVelocityCubeBig;
-    physics.cubeRotating = true;
-  }
 }
 
 export function updateJumpVelocity(speedIndex = 0){ // speedIndex = initial jump: 0, second jump: 1 (slightly higher)
