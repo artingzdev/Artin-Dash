@@ -10,7 +10,7 @@ import { jumpHeld } from "./key-states.js";
 
 export let app = new Application();
 export const defaultGroundPositionPercentage = (409/512);
- 
+  
 (async () => {
   await app.init({
     resizeTo: window,
